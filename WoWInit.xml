@@ -154,7 +154,6 @@
 							</OnEscapePressed>
                         </Scripts>
                     </EditBox>
-
                 </ScrollChild>
             </ScrollFrame>
             <Button name="$parent_SubmitButton" text="WI_SUBMITBUTTON" inherits="UIPanelButtonTemplate">
@@ -212,10 +211,54 @@
                 </Offset>
             </Anchor>
         </Anchors>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture name="$parent_Overlay" file="Interface\Minimap\MiniMap-TrackingBorder">
+                    <Size>
+                        <AbsDimension x="53" y="53"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND">
+                <Texture name="$parent_Background" file="Interface\Minimap\UI-Minimap-Background">
+                    <Size>
+                        <AbsDimension x="20" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="7" y="-5"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parent_Artwork" file="Interface\Icons\INV_Misc_PunchCards_Blue">
+                    <Size>
+                        <AbsDimension x="17" y="17"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="7" y="-6"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
         <Frames>
             <Button name="WI_MinimapButton" enableMouse="true">
                 <Size>
-                    <AbsDimension x="32" y="32"/>
+                    <AbsDimension x="31" y="31"/>
                 </Size>
                 <Anchors>
                     <Anchor point="TOPLEFT">
@@ -224,8 +267,7 @@
                         </Offset>
                     </Anchor>
                 </Anchors>
-                <NormalTexture file="Interface\Icons\INV_Misc_PunchCards_Blue"/>
-                <PushedTexture file="Interface\Icons\INV_Misc_PunchCards_Blue"/>
+
                 <HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
                 <Scripts>
                     <OnMouseDown>
