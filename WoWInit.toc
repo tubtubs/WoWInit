@@ -1,0 +1,11 @@
+## Interface: 11200
+## Title: WoWInit
+## Author: |ccf3CE13Ftubtubs 
+## Version: 1.0
+## Notes: Setup commands to run on login
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: WI_Vars
+localisations.lua
+WoWInit.xml
+WoWInit.lua

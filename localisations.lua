@@ -1,0 +1,8 @@
+WI_ADDONNAME = "WoWInit"
+WI_AUTHOR = "Tubtubs"
+WI_VERSION = "1.0"
+WI_FULLNAME = WI_ADDONNAME .. " v" .. WI_VERSION .. " by " .. WI_AUTHOR
+WI_SPLASH = WI_FULLNAME .. " loaded." 
+
+WI_CMDFrameTitle = WI_ADDONNAME.." CMDs"
+WI_SUBMITBUTTON = "Submit"
