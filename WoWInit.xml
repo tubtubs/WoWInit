@@ -288,11 +288,5 @@
                 </Scripts>
             </Button>
         </Frames>
-        <Scripts>
-            <OnLoad>
-                <!--ParchmentButton_Init();-->
-                <!-- UIDropDownMenu_Initialize(self, MH_MinimapDrop_OnLoad); -->
-            </OnLoad>
-        </Scripts>
     </Frame>
 </Ui>
