@@ -19,7 +19,6 @@ function WI_Run()
             Commands = "",
         };
     else
-        DEFAULT_CHAT_FRAME:AddMessage(WI_Vars.Commands)
         WI_ExecuteCMDs()
     end
     WI_MinimapIconRegister()
