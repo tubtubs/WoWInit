@@ -21,7 +21,7 @@
         <Size>
             <AbsDimension x="360" y="400" />
         </Size>
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+        <Backdrop  edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
             <BackgroundInsets>
                 <AbsInset left="11" right="12" top="12" bottom="11" />
             </BackgroundInsets>
@@ -33,6 +33,21 @@
             </EdgeSize>
         </Backdrop>
         <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parent_Background">
+                    <Size>
+                        <AbsDimension x="349" y="377"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-12"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <Color a="0.9" r="0.11" g="0.024" b="0.18" />
+                </Texture>
+            </Layer>
             <Layer>
                 <Texture name="$parentTitleBorder" file="Interface\DialogFrame\UI-DialogBox-Header">
                     <Size>
