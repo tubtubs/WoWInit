@@ -10,7 +10,7 @@
             </OnEvent>
         </Scripts>
     </Frame>
-    <Frame name="WI_CMDFrame" frameStrata="DIALOG" toplevel="true" hidden="true">
+    <Frame name="WI_CMDFrame"  movable="true" enableMouse="true"  frameStrata="DIALOG" toplevel="true" hidden="true">
         <Anchors>
             <Anchor point="CENTER" relativeTo="UIParent">
                 <Offset>
@@ -19,7 +19,7 @@
             </Anchor>
         </Anchors>
         <Size>
-            <AbsDimension x="400" y="400" />
+            <AbsDimension x="360" y="400" />
         </Size>
         <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
             <BackgroundInsets>
@@ -70,19 +70,41 @@
                         </Offset>
                     </Shadow>
                 </FontString>
+                <FontString name="$parentHelp" font="GameFontNormalSmall" text="WI_HELPTEXT">
+                    <Size>
+                        <AbsDimension x="300" y="0" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-28" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <FontHeight>
+                        <AbsValue val="12" />
+                    </FontHeight>
+                    <Color r="1" g="1" b="1" />
+                    <Shadow>
+                        <Color r="0" g="0" b="0" />
+                        <Offset>
+                            <AbsDimension x="1" y="-1" />
+                        </Offset>
+                    </Shadow>
+                </FontString>
             </Layer>
         </Layers>
         <Frames>
             <Frame name="$parentLayer2" enableMouse="true">
                 <Anchors>
                     <Anchor point="LEFT">
-                        <Offset x="40" y="-50" />
+                        <Offset x="20" y="-50" />
                     </Anchor>
                     <Anchor point="TOP">
-                        <Offset x="50" y="-50" />
+                        <Offset x="30" y="-50" />
                     </Anchor>
                     <Anchor point="BOTTOM">
-                        <Offset x="50" y="50" />
+                        <Offset x="30" y="41" />
                     </Anchor>
                 </Anchors>
                 <Size>
@@ -107,38 +129,32 @@
             </Frame>
             <ScrollFrame name="$parent_ScrollFrame" inherits="UIPanelScrollFrameTemplate">
                 <Size>
-                    <AbsDimension x="300" y="480"/>
+                    <AbsDimension x="278" y="480"/>
                 </Size>
                 <Anchors>
                     <Anchor point="LEFT">
-                        <Offset x="50" y="-60" />
+                        <Offset x="33" y="-55" />
                     </Anchor>
                     <Anchor point="TOP">
-                        <Offset x="50" y="-60" />
+                        <Offset x="33" y="-55" />
                     </Anchor>
                     <Anchor point="BOTTOM">
-                        <Offset x="50" y="60" />
+                        <Offset x="33" y="49" />
                     </Anchor>
                 </Anchors>
                 <ScrollChild>
-                    <EditBox name="$parent_EditBox" multiLine="1" font="GameFontNormal" autoFocus="false">
+                    <EditBox name="$parent_EditBox" multiLine="1" font="GameFontNormalSmall" autoFocus="false">
                         <Size>
-                            <AbsDimension x="300" y="480" />
+                            <AbsDimension x="278" y="480" />
                         </Size>
                         <Anchors>
-                            <Anchor point="TOPLEFT" relativeTo="$parent_ScrollFrame">
-                                <Offset x="-80" y="80" />
-                            </Anchor>
-                            <Anchor point="BOTTOMRIGHT"  relativeTo="$parent_ScrollFrame">
-                                <Offset x="20" y="20" />
+                            <Anchor point="LEFT">
+                                <Offset x="28" y="-60" />
                             </Anchor>
                         </Anchors>
                         <Scripts>
-                            <OnShow>
-								WI_CMDFrame_OnShow()
-                                WI_CMDFrame_ScrollFrame_EditBox:SetFocus();
-							</OnShow>
                             <OnTextChanged>
+                                WI_CMDFrame_SubmitButton_Update()
 								local scrollBar = getglobal(this:GetParent():GetName().."ScrollBar")
 								this:GetParent():UpdateScrollChildRect();
 								local min;
@@ -150,7 +166,7 @@
 								end
 							</OnTextChanged>
                             <OnEscapePressed>
-							    WI_CMDFrame_ScrollFrame_EditBox:ClearFocus();
+							    WI_CMDFrame_ScrollFrame_EditBox:ClearFocus()
 							</OnEscapePressed>
                         </Scripts>
                     </EditBox>
@@ -158,12 +174,12 @@
             </ScrollFrame>
             <Button name="$parent_SubmitButton" text="WI_SUBMITBUTTON" inherits="UIPanelButtonTemplate">
                 <Size>
-                    <AbsDimension x="155" y="20" />
+                    <AbsDimension x="80" y="20" />
                 </Size>
                 <Anchors>
-                    <Anchor point="BOTTOM" relativeTo="$parent_ScrollFrame">
+                    <Anchor point="BOTTOM">
                         <Offset>
-                            <AbsDimension x="0" y="-35"/>
+                            <AbsDimension x="0" y="18"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -171,6 +187,43 @@
                     <OnClick>
 					    WI_CMDFrame_SubmitButton_OnClick();
                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parent_ExamplesButton" text="WI_EXAMPLESBUTTON" inherits="UIPanelButtonTemplate">
+                <Size>
+                    <AbsDimension x="100" y="20" />
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="-96" y="18"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        WI_ToggleExampleMenu()
+					</OnClick>
+                    <OnShow>
+						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 );
+					</OnShow>
+                </Scripts>
+            </Button>
+            <Button name="$parent_CancelButton" text="WI_CANCELBUTTON" inherits="UIPanelButtonTemplate">
+                <Size>
+                    <AbsDimension x="100" y="20" />
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="96" y="18"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        WI_CMDFrame:Hide()
+					</OnClick>
                 </Scripts>
             </Button>
             <Button name="$parent_Close" inherits="UIPanelCloseButton">
@@ -183,21 +236,28 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-					    WI_CMDFrame:Hide();
+                        PlaySound("igCharacterInfoClose")
+					    WI_CMDFrame:Hide()
 					</OnClick>
                 </Scripts>
             </Button>
         </Frames>
         <Scripts>
             <OnLoad>             
-			    tinsert(UISpecialFrames, "WI_CMDFrame");
+			    tinsert(UISpecialFrames, "WI_CMDFrame")
 			</OnLoad>
             <OnShow>
-			    PlaySound("igCharacterInfoOpen");
+			    WI_CMDFrame_OnShow()
 			</OnShow>
             <OnHide>
-			    PlaySound("igCharacterInfoClose");
+			    WI_CMDFrame_OnHide()
 			</OnHide>
+            <OnMouseDown>
+                this:StartMoving()
+            </OnMouseDown>
+            <OnMouseUp>
+                this:StopMovingOrSizing()
+            </OnMouseUp>
         </Scripts>
     </Frame>
 </Ui>
