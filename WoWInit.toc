@@ -5,7 +5,14 @@
 ## Notes: Setup commands to run on login
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
+## OptionalDeps: none
 ## SavedVariables: WI_Vars
+libs\LibStub.lua
+libs\AceCore-3.0.lua
+libs\AceHook-3.0.lua
+libs\CallbackHandler-1.0.lua
+libs\LibDataBroker-1.1.lua
+libs\LibDBIcon-1.0.lua
 localisations.lua
 WoWInit.xml
 WoWInit.lua
