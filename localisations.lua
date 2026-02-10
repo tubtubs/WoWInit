@@ -17,45 +17,41 @@ WI_EXAMPLES =
 -- example  - the command to paste into the command box. Usually prepended with newline
 -- check    - returns if the example should be included. 
 --          Ex: returns false if the relevant addon isn't installed, or just returns true
+-- value    - Used to pull up the 2nd level's menu
 {
+    [1] = --First level
     {
-        name = "Console Print",
-        tooltip = "Prints Test to the chat frame",
-        example = "\n/run DEFAULT_CHAT_FRAME:AddMessage(\"Test\")",
-        check = function() 
-            return true
-        end,
-    },
-    {
-        name = "MorphHelper",
-        tooltip = "Morphs the player into a murloc",
-        example = "\n/mh morph player 31",
-        check = function() 
-            if (MH_Vars) then
+        {
+            name = "Console Print",
+            tooltip = "Prints Test to the chat frame",
+            example = "\n/run DEFAULT_CHAT_FRAME:AddMessage(\"Test\")",
+            check = function() 
                 return true
-            else
-                return false
-            end
-        end,
-    },
-    {
-        name = "pfQuest",
-        tooltip = "Tracks chests, rares and closes the map if it opens",
-        example = "\n/db track chests\n/db track rares\n/run if WorldMapFrame:IsShown() then ToggleWorldMap() end",
-        check = function() 
-            if (pfQuest) then
+            end,
+        },
+        {
+            name = "pfQuest",
+            tooltip = "Tracks chests, rares and closes the map if it opens",
+            example = "\n/db track chests\n/db track rares\n/run if WorldMapFrame:IsShown() then ToggleWorldMap() end",
+            check = function() 
+                if (pfQuest) then
+                    return true
+                else
+                    return false
+                end
+            end,
+        },
+        {
+            name = "Print Rested",
+            tooltip = "Prints rested XP % in chat",
+            example = "\n/script local r = GetXPExhaustion() if r then DEFAULT_CHAT_FRAME:AddMessage(\"Rested XP: \" .. tostring(math.floor((r / UnitXPMax(\"player\")) * 100)) .. \"%\") else DEFAULT_CHAT_FRAME:AddMessage(\"No Rested XP.\") end",
+            check = function() 
                 return true
-            else
-                return false
-            end
-        end,
+            end,
+        },
     },
+    [2] = -- level 2 
     {
-        name = "Print Rested",
-        tooltip = "Prints rested XP % in chat",
-        example = "\n/script local r = GetXPExhaustion() if r then DEFAULT_CHAT_FRAME:AddMessage(\"Rested XP: \" .. tostring(math.floor((r / UnitXPMax(\"player\")) * 100)) .. \"%\") else DEFAULT_CHAT_FRAME:AddMessage(\"No Rested XP.\") end",
-        check = function() 
-            return true
-        end,
-    },
+
+    }
 }

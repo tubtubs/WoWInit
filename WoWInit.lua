@@ -1,7 +1,7 @@
 --[[
 ** WoWInit **
 by Tubtubs
-Setup commands to run after you login to WoW. Type /wi, or click the minimap to access the editor.
+Setup commands to run after you login to WoW. Type /wi, or click the minimap button to access the editor.
 
 Includes presets for:
 pfQuest
@@ -58,8 +58,49 @@ function WI_DewdropRegister()
 		end,
 		'children', function(level, value) --Children
 			if level == 1 then
-                for i,j in ipairs(WI_EXAMPLES) do
+                for i,j in ipairs(WI_EXAMPLES[1]) do
                     if j.check() then
+                        if j.example == "" then -- means its going to level 2
+                        WI_Dewdrop:AddLine(
+                            'text', j.name,
+                            'tooltipTitle', j.name,
+                            'tooltipText', j.tooltip,  
+                            'textR', 1,
+                            'textG', 0.82,
+                            'textB', 0,
+                            'func', nil,
+                            'value', j.value,
+                            'hasArrow', true,
+                            'notCheckable', true
+                        )
+                        else
+                        WI_Dewdrop:AddLine(
+                            'text', j.name,
+                            'tooltipTitle', j.name,
+                            'tooltipText', j.tooltip,  
+                            'textR', 1,
+                            'textG', 0.82,
+                            'textB', 0,
+                            'func', WI_PasteExample,
+                            'arg1', j.example,
+                            'notCheckable', true
+                        )
+                        end
+                    end
+                end
+
+				--Close button
+				WI_Dewdrop:AddLine(
+					'text', "Close Menu",
+					'textR', 0,
+					'textG', 1,
+					'textB', 1,
+					'func', function() WI_Dewdrop:Close() end,
+					'notCheckable', true
+				)
+            elseif level == 2 then
+                for i,j in ipairs(WI_EXAMPLES[2]) do
+                    if j.value == value and j.check() then
                         WI_Dewdrop:AddLine(
                             'text', j.name,
                             'tooltipTitle', j.name,
@@ -73,16 +114,6 @@ function WI_DewdropRegister()
                         )
                     end
                 end
-
-				--Close button
-				WI_Dewdrop:AddLine(
-					'text', "Close Menu",
-					'textR', 0,
-					'textG', 1,
-					'textB', 1,
-					'func', function() WI_Dewdrop:Close() end,
-					'notCheckable', true
-				)
 			end
 		end,
 		'dontHook', true
