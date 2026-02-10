@@ -10,7 +10,6 @@ morphHelper
 local libIcon = LibStub("LibDBIcon-1.0");
 local libData = LibStub("LibDataBroker-1.1");
 local WI_Dewdrop = AceLibrary("Dewdrop-2.0");
-local WI_DewdropSubMenu = AceLibrary("Dewdrop-2.0");
 
 --init functions
 function WI_Run()
@@ -18,12 +17,16 @@ function WI_Run()
         WI_Vars = {
             Commands = "",
         };
-    else
-        WI_ExecuteCMDs()
+    end
+    if WoWInit_Icon == nil then
+        WoWInit_Icon = {
+            hide = false
+        };
     end
     WI_MinimapIconRegister()
     WI_DewdropRegister()
     DEFAULT_CHAT_FRAME:AddMessage(WI_SPLASH)
+    WI_ExecuteCMDs()
 end
 
 function WI_ExecuteCMDs()
@@ -31,6 +34,7 @@ function WI_ExecuteCMDs()
         DEFAULT_CHAT_FRAME.editBox:SetText(w)
         ChatEdit_SendText(DEFAULT_CHAT_FRAME.editBox, 0)
 	end
+    DEFAULT_CHAT_FRAME:AddMessage(WI_INITCOMPLETE)
 end
 
 --Dropdown Menu Code
@@ -127,7 +131,7 @@ end
 
 function WI_CMDFrame_SubmitButton_Update()
     w = WI_CMDFrame_ScrollFrame_EditBox:GetText()
-    if w == "" or w==WI_Vars.Commands then
+    if w==WI_Vars.Commands then
         WI_CMDFrame_SubmitButton:Disable()
     else
         WI_CMDFrame_SubmitButton:Enable()

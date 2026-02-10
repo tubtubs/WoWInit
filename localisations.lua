@@ -3,6 +3,7 @@ WI_AUTHOR = "Tubtubs"
 WI_VERSION = "1.0"
 WI_FULLNAME = WI_ADDONNAME .. " v" .. WI_VERSION .. " by " .. WI_AUTHOR
 WI_SPLASH = WI_FULLNAME .. " loaded." 
+WI_INITCOMPLETE = WI_ADDONNAME .. ": Finished init commands."
 
 WI_CMDFrameTitle = WI_ADDONNAME
 WI_SUBMITBUTTON = "Save"

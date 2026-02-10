@@ -3,7 +3,7 @@
     <Frame name="WI_Listener" hidden="true">
         <Scripts>
             <OnLoad>
-                this:RegisterEvent("SKILL_LINES_CHANGED");
+                this:RegisterEvent("PLAYER_LOGIN");
             </OnLoad>
             <OnEvent>
                 WI_Run()

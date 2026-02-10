@@ -6,7 +6,7 @@
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## OptionalDeps: none
-## SavedVariables: WI_Vars
+## SavedVariables: WI_Vars, WoWInit_Icon
 libs\AceLibrary.lua
 libs\Dewdrop-2.0.lua
 libs\LibStub.lua
